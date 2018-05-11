@@ -36,7 +36,7 @@ public final class LDAPHelper {
 
         do {
             DirContext context = null;
-          
+
             try {
                 String dn = "";
                 String bindUser = config.getBindUser();
@@ -114,9 +114,10 @@ public final class LDAPHelper {
                 }
 
                 // search group memberships as user attributes
-                Attribute memberOf = result.getAttributes().get("memberOf");
+               // Attribute memberOf = result.getAttributes().get("memberOf");
                 Set<String> memberships = new HashSet<>();
-                if (memberOf != null) {// null if this user belongs to no group at all
+               /*
+               if (memberOf != null) {// null if this user belongs to no group at all
                     for (int i = 0; i < memberOf.size(); i++) {
                         try {
                             Attributes atts = context.getAttributes(memberOf.get(i).toString(), new String[]{"CN"});
@@ -127,7 +128,7 @@ public final class LDAPHelper {
                         }
                     }
                 }
-
+                */
                 // alternative LDAP group membership scheme involves a hierarchy of groups with zero to
                 // many members, identified by an attribute name (typically 'memberUid' for posixGroup membership)
                 if (config.getGroupSearch() != null) {
